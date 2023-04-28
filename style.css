@@ -1,4 +1,36 @@
 container {
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    height: 100vh;
+    width: 100vw;
+}
+
+#header {
+   text-align: center;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#maintop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+table {
+    margin-top: 2rem;
+    border-collapse: collapse;
+    }
+
+tr {
+    border-style: solid;
+    border-color: black;   
+}
+
+td {
+    padding: 15px;
 }
