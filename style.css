@@ -21,6 +21,10 @@ container {
     align-items: center;
 }
 
+#newbook {
+    margin-bottom:20px;
+}
+
 table {
     margin-top: 2rem;
     border-collapse: collapse;
@@ -33,4 +37,24 @@ tr {
 
 td {
     padding: 15px;
+}
+
+#submitNew {
+    display: flex;
+    flex-direction: column;
+       
+}
+
+label {
+    align-self: center;
+}
+
+form > input {
+    width: 10rem;
+    align-self: center;
+}
+
+form > select {
+    width: 3rem;
+    align-self: center;
 }

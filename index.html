@@ -13,7 +13,19 @@
         <div id="header"><h1>Library</h1></div>
         <div id ="main"><div id="maintop">
                 <button id="newbook">NEW BOOK</button></div>
-                <div id="lib">
+                <div id="newForm">
+                    <form id="submitNew">
+                        <label for="Title">Title</label>
+                        <input type="text" name="Title"> <br>
+                        <label for="Author">Author</label>
+                        <input type="text" name="Author"> <br>
+                        <label for="Pages">Pages</label>
+                        <input type="number" name="Pages"> <br>
+                        <label for="Read">Read?</label>
+                        <select name="Read?"><option value="True">Yes<option value="False">No</option></select></select> <br>
+                        <input type="submit" id="submitBtn">
+                    </form></div>
+                    <div id="lib"></div>
                 <table id="library">
                 <tr>
                     <th>Title</th>

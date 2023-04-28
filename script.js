@@ -1,7 +1,10 @@
 // delcaring variables from the webpage
 window.onload = function() {
 newBookBtn = document.getElementById('newbook');
-newBookBtn.addEventListener('click', () => alert('click'))}
+library = document.getElementById('library')
+newBookBtn.addEventListener('click', () => addNewBook())
+
+ }
 
 // declaring library variable and the Book object
 let myLibrary = []
@@ -27,4 +30,9 @@ console.log(myLibrary.forEach(readBook))
 function readBook(book) {
     console.log(book)
     return book
+}
+
+function addNewBook() {
+    library.style.opacity=0;
+   
 }
