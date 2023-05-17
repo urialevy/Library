@@ -16,8 +16,8 @@ for (let i = 0; i<myLibrary.length; i++) {
     cell2.innerHTML = myLibrary[i].author;
     cell3.innerHTML = myLibrary[i].pages;
     if (myLibrary[i].read == true) {cell4.innerHTML = "Yes"} else {cell4.innerHTML = "No"}
-    cell5.innerHTML = `<td class="editbtn" bookid=2><button>EDIT</button></td>`;
-    cell6.innerHTML = `<td class="deletebtn" bookid=2><button>DELETE</button></td>`;
+    cell5.innerHTML = `<td class="editbtn" bookid=${myLibrary[i]}><button>EDIT</button></td>`;
+    cell6.innerHTML = `<td class="deletebtn" bookid=${myLibrary[i]}><button>DELETE</button></td>`;
 }
 
 
