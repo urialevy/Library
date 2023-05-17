@@ -1,10 +1,26 @@
 // delcaring variables from the webpage
+
 window.onload = function() {
-newBookBtn = document.getElementById('newbook');
-library = document.getElementById('library')
+const library = document.getElementById('libBody')
+const newBookBtn = document.getElementById('newbook');
 newBookBtn.addEventListener('click', () => addNewBook())
+let row = library.insertRow(3);
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
+let cell3 = row.insertCell(2);
+let cell4 = row.insertCell(3);
+let cell5 = row.insertCell(4);
+let cell6 = row.insertCell(5);
+cell1.innerHTML = myLibrary[0].title;
+cell2.innerHTML = myLibrary[0].author;
+cell3.innerHTML = myLibrary[0].pages;
+cell4.innerHTML = myLibrary[0].read;
+cell5.innerHTML = `<td class="editbtn" bookid=0><button>EDIT</button></td>`;
+cell6.innerHTML = `<td class="deletebtn" bookid=0><button>DELETE</button></td>`;
 
  }
+
+
 
 // declaring library variable and the Book object
 let myLibrary = []
@@ -32,7 +48,7 @@ function readBook(book) {
     return book
 }
 
-function addNewBook() {
-    library.style.opacity=0;
+// function addNewBook() {
+//     library.style.opacity=0;
    
-}
+// }
