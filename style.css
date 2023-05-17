@@ -17,9 +17,8 @@ container {
 
 #maintop {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+    flex-direction: column;
+    }
 
 #newbook {
     margin-bottom:20px;
