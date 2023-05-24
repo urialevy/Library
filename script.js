@@ -1,5 +1,5 @@
 // delcaring variables from the webpage
-const title = document.getElementById('title')
+
 window.onload = function() {
 const library = document.getElementById('libBody')
 const newBookBtn = document.getElementById('newbook');
@@ -17,7 +17,7 @@ newBookBtn.addEventListener('click', () => addNewBook())
         cell1.innerHTML = myLibrary[i].title;
         cell2.innerHTML = myLibrary[i].author;
         cell3.innerHTML = myLibrary[i].pages;
-        if (myLibrary[i].read == true) {cell4.innerHTML = "Yes"} else {cell4.innerHTML = "No"}
+        cell4.innerHTML = myLibrary[i].read
         cell5.innerHTML = `<td><button class="editbtn" id="edit_${i}">EDIT</button></td>`;
         cell6.innerHTML = `<td><button class="deletebtn" id="delete_${i}">DELETE</button></td>`;
     }}
@@ -58,7 +58,22 @@ let title = document.getElementById('title').value
 let author = document.getElementById('author').value
 let pages = Number(document.getElementById('pages').value)
 let read = document.getElementById('read').checked
-addBookToLibrary(title, author, pages, read)})
+addBookToLibrary(title, author, pages, read)
+let row = library.insertRow(-1)
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
+let cell3 = row.insertCell(2);
+let cell4 = row.insertCell(3);
+let cell5 = row.insertCell(4);
+let cell6 = row.insertCell(5);
+let cell7 = row.insertCell(6);
+cell1.innerHTML = this.title.value;
+// cell2.innerHTML = myLibrary[-1].author;
+// cell3.innerHTML = myLibrary[-1].pages;
+// cell4.innerHTML = myLibrary[-1].read
+cell5.innerHTML = `<td><button class="editbtn" id="edit_${myLibrary.length}">EDIT</button></td>`;
+cell6.innerHTML = `<td><button class="deletebtn" id="delete_${myLibrary.length}">DELETE</button></td>`;
 
 
-}
+submitNew.reset();
+document.getElementById('submitNew').style.visibility='hidden'})}
