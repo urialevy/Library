@@ -24,6 +24,10 @@ container {
     margin-bottom:20px;
 }
 
+#submitNew{
+    visibility: hidden;
+}
+
 table {
     margin-top: 2rem;
     border-collapse: collapse;

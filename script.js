@@ -1,9 +1,9 @@
 // delcaring variables from the webpage
-
+const title = document.getElementById('title')
 window.onload = function() {
-library = document.getElementById('libBody')
+const library = document.getElementById('libBody')
 const newBookBtn = document.getElementById('newbook');
-formArea = document.getElementById('newForm')
+const formArea = document.getElementById('newForm')
 newBookBtn.addEventListener('click', () => addNewBook())
     for (let i = 0; i<myLibrary.length; i++) {
         let row = library.insertRow(i+1)
@@ -45,33 +45,20 @@ addBookToLibrary("The Eye of the World", "Robert Jordan", 782,true)
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 304, true)
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald",208,false)
 
-// console.log(myLibrary.forEach(readBook))
-// function readBook(book) {
-//     console.log(book)
-//     return book
-// }
-
+// create add new book form
 function addNewBook() {
-    newForm.innerHTML =`<form id="submitNew">
-    <label for="Title">Title</label>
-    <input type="text" name="Title" id="title" placeholder="Title" required> <br>
-    <label for="Author">Author</label>
-    <input type="text" name="Author" id="author" placeholder="Author" required> <br>
-    <label for="Pages">Pages</label>
-    <input type="number" name="Pages" id="pages" required> <br>
-    <label for="read">Read?</label>
-    <input type="checkbox" id="read"> <br>
-    <input type="submit" id="submitBtn">
-</form>`;
-submitBtn = document.getElementById('submitBtn')
-title = document.getElementById('title').value
-author = document.getElementById('author').value
-pages = document.getElementById('pages').value
-read = document.getElementById('read').checked
-form = document.getElementById('submitNew');
-form.addEventListener("submit", (e, i) => {e.preventDefault();
-addBookToLibrary(i)})
-// form.addEventListener('submit', (e, function)) => {e.preventDefault()}
-// submitBtn.addEventListener('submit',() => addBookToLibrary(title, author, pages, read))
+    document.getElementById('submitNew').style.visibility='visible'
+
+;
+
+let submitBtn = document.getElementById('submitBtn')
+let form = document.getElementById('submitNew');
+form.addEventListener("submit", (e) => {e.preventDefault();
+let title = document.getElementById('title').value
+let author = document.getElementById('author').value
+let pages = Number(document.getElementById('pages').value)
+let read = document.getElementById('read').checked
+addBookToLibrary(title, author, pages, read)})
+
 
 }
