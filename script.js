@@ -18,14 +18,32 @@ window.onload = function() {
             cell3.innerHTML = myLibrary[i].pages;
             cell4.innerHTML = myLibrary[i].read
             cell5.innerHTML = `<td><button class="editbtn" id="edit_${i}">EDIT</button></td>`;
-            cell6.innerHTML = `<td><button class="deletebtn" id="delete_${i}">DELETE</button></td>`;
+            cell6.innerHTML = `<td><button class="deletebtn" id="delete_${i}" data=${i+1}>DELETE</button></td>`; 
+            document.querySelector(`#delete_${i}`).addEventListener('click', function(){
+                let entry = Number(document.querySelector(`#delete_${i}`).getAttribute('data'))
+                myLibrary.splice(i,1)
+                if (myLibrary.length == 1) {
+                library.deleteRow(-1);
+                }
+                else{
+                    library.deleteRow(entry);
+                }
+            } )
         }
         const form = document.getElementById('submitNew')
         form.addEventListener('submit', function(submit) {
             submit.preventDefault()
         newEntry()})
-        }
-    
+}
+// adds event listener to delete buttons to trigger relevant function
+window.addEventListener('DOMContentLoaded', function(e){
+    const delbtns = document.getElementsByClassName('deletebtn');
+    for (let i = 0; i < delbtns.length; i++) {
+        delbtns[i].addEventListener('click', delRow(i))
+    }
+}) 
+
+
     
     // declaring library variable and the Book object
     const myLibrary = []
@@ -51,9 +69,14 @@ window.onload = function() {
     // create add new book form with its functionality
     function addNewBook() {
         document.getElementById('submitNew').style.visibility='visible'}
-    ;
-    
-    // function to add rows to library table
+
+    // function to delete an array item
+    function deleteBook(){
+
+    }
+
+
+    // function to add rows to library HTML table
     
     function newEntry(){
             let title = document.getElementById('title').value
