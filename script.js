@@ -17,54 +17,50 @@ window.onload = function() {
             cell2.innerHTML = myLibrary[i].author;
             cell3.innerHTML = myLibrary[i].pages;
             cell4.innerHTML = myLibrary[i].read
-            cell5.innerHTML = `<td><button class="editbtn" id="edit_${i}">EDIT</button></td>`;
-            cell6.innerHTML = `<td><button class="deletebtn" id="delete_${i}" data=${i+1}>DELETE</button></td>`; 
-            document.querySelector(`#delete_${i}`).addEventListener('click', function(){
-                let entry = Number(document.querySelector(`#delete_${i}`).getAttribute('data'))
-                myLibrary.splice(i,1)
-                if (myLibrary.length == 1) {
-                library.deleteRow(-1);
-                }
-                else{
-                    library.deleteRow(entry);
-                }
-            } )
+            cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[i].id}">EDIT</button></td>`;
+            cell6.innerHTML = `<td><button class="deletebtn" id="delete.${myLibrary[i].id}" data-index=${myLibrary[i].id}>DELETE</button></td>`; 
         }
         const form = document.getElementById('submitNew')
         form.addEventListener('submit', function(submit) {
             submit.preventDefault()
         newEntry()})
+        deletionBtns()
 }
-// adds event listener to delete buttons to trigger relevant function
-window.addEventListener('DOMContentLoaded', function(e){
-    const delbtns = document.getElementsByClassName('deletebtn');
-    for (let i = 0; i < delbtns.length; i++) {
-        delbtns[i].addEventListener('click', delRow(i))
-    }
-}) 
+const delbtns = document.getElementsByClassName(`deletebtn`)
+function deletionBtns() {
+for (let i = 0; i < delbtns.length; i++) {
+    let index = Number(delbtns[i].getAttribute('data-index'))
+    delbtns[i].addEventListener('click', function() {
+        console.log(`Deleted ${myLibrary[index].title}, i = ${index}`)
+        library.deleteRow(index+1)
+        myLibrary.splice(index, 1)
+        })}}
+
+    
 
 
     
     // declaring library variable and the Book object
     const myLibrary = []
     
-    function Book(title, author, pages, read) {
+    function Book(title, author, pages, read, id) {
         this.title = title
         this.author = author;
         this.pages = pages
         this.read = read
+        this.id = id;
     
     }
     // add book to library function
-    function addBookToLibrary(title, author, pages, read){true
-        myLibrary.push(new Book(title, author, pages, read));
+    function addBookToLibrary(title, author, pages, read, id){true
+        myLibrary.push(new Book(title, author, pages, read, id));
         
     }
     
     // Adding some books 
-    addBookToLibrary("The Eye of the World", "Robert Jordan", 782,true)
-    addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 304, true)
-    addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald",208,false)
+    addBookToLibrary("The Eye of the World", "Robert Jordan", 782,true, myLibrary.length)
+    addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 304, true, myLibrary.length)
+    addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald",208,false, myLibrary.length)
     
     // create add new book form with its functionality
     function addNewBook() {
@@ -83,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function(e){
             let author = document.getElementById('author').value
             let pages = Number(document.getElementById('pages').value)
             let read = document.getElementById('read').checked
-            addBookToLibrary(title, author, pages, read)
+            addBookToLibrary(title, author, pages, read, Number(myLibrary.length))
                 let row = library.insertRow(-1)
                 let cell1 = row.insertCell(0);
                 let cell2 = row.insertCell(1);
@@ -96,8 +92,8 @@ window.addEventListener('DOMContentLoaded', function(e){
                 cell2.innerHTML = this.author.value;
                 cell3.innerHTML = this.pages.value;
                 cell4.innerHTML = this.read.checked;
-                cell5.innerHTML = `<td><button class="editbtn" id="edit_${myLibrary.length}">EDIT</button></td>`;
-                cell6.innerHTML = `<td><button class="deletebtn" id="delete_${myLibrary.length}">DELETE</button></td>`;
+                cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[i].id}">EDIT</button></td>`;
+                cell6.innerHTML = `<td><button class="deletebtn" id="delete.${myLibrary[i].id} data-index=${myLibrary[i].id}">DELETE</button></td>`;
         submitNew.reset();
         document.getElementById('submitNew').style.visibility='hidden'}
     
