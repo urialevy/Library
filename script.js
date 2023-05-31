@@ -29,16 +29,18 @@ window.onload = function() {
 const delbtns = document.getElementsByClassName(`deletebtn`)
 function deletionBtns() {
 for (let i = 0; i < delbtns.length; i++) {
-    let index = Number(delbtns[i].getAttribute('data-index'))
-    delbtns[i].addEventListener('click', function() {
-        console.log(`Deleted ${myLibrary[index].title}, i = ${index}`)
-        library.deleteRow(index+1)
-        myLibrary.splice(index, 1)
-        })}}
+        delbtns[i].addEventListener('click', function(){
+            function checkIDs(e){
+                return e.id !== Number(delbtns[i].getAttribute('data-index')) 
+            }        
+            const newLib = myLibrary.filter(checkIDs)
+            console.log(newLib)
+            return newLib;            
+        })
+    }
+}
 
-    
-
-
+// myLibrary.splice(myLibrary.indexOf(Number(delbtns[i].getAttribute('data-index')),1))
     
     // declaring library variable and the Book object
     const myLibrary = []
