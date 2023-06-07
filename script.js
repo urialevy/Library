@@ -18,7 +18,7 @@ window.onload = function() {
             cell3.innerHTML = myLibrary[i].pages;
             cell4.innerHTML = myLibrary[i].read
             cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[i].id}">EDIT</button></td>`;
-            cell6.innerHTML = `<td><button class="deletebtn" id="delete.${myLibrary[i].id}" data-index=${myLibrary[i].id}>DELETE</button></td>`; 
+            cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[i].id}>DELETE</button></td>`; 
         }
         const form = document.getElementById('submitNew')
         form.addEventListener('submit', function(submit) {
@@ -31,19 +31,48 @@ function deletionBtns() {
 for (let i = 0; i < delbtns.length; i++) {
         delbtns[i].addEventListener('click', function(){
             function checkIDs(e){
-                return e.id !== Number(delbtns[i].getAttribute('data-index')) 
-            }        
-            const newLib = myLibrary.filter(checkIDs)
-            console.log(newLib)
-            return newLib;            
+                return e.id !== Number(delbtns[i].getAttribute('data-index'))                
+            }
+                        
+            let newLib = myLibrary.filter(checkIDs)
+            myLibrary = newLib;
+            console.log(myLibrary)
+            recreateTable();
+            
         })
     }
+
 }
 
-// myLibrary.splice(myLibrary.indexOf(Number(delbtns[i].getAttribute('data-index')),1))
-    
+function recreateTable() {
+    setIDs();
+    library.innerHTML = `<tbody id = libBody>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Pages</th>
+        <th>Read?</th></tbody>`;
+    for (let i = 0; i<myLibrary.length; i++) {
+        let row = library.insertRow(-1)
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
+        let cell6 = row.insertCell(5);
+        let cell7 = row.insertCell(6);
+        cell1.innerHTML = myLibrary[i].title;
+        cell2.innerHTML = myLibrary[i].author;
+        cell3.innerHTML = myLibrary[i].pages;
+        cell4.innerHTML = myLibrary[i].read
+        cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[i].id}">EDIT</button></td>`;
+        cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[i].id}>DELETE</button></td>`; 
+    }
+    deletionBtns();
+}
+
     // declaring library variable and the Book object
-    const myLibrary = []
+    let myLibrary = []
     
     function Book(title, author, pages, read, id) {
         this.title = title
@@ -82,6 +111,8 @@ for (let i = 0; i < delbtns.length; i++) {
             let pages = Number(document.getElementById('pages').value)
             let read = document.getElementById('read').checked
             addBookToLibrary(title, author, pages, read, Number(myLibrary.length))
+                setIDs();
+                console.log(myLibrary)
                 let row = library.insertRow(-1)
                 let cell1 = row.insertCell(0);
                 let cell2 = row.insertCell(1);
@@ -94,9 +125,22 @@ for (let i = 0; i < delbtns.length; i++) {
                 cell2.innerHTML = this.author.value;
                 cell3.innerHTML = this.pages.value;
                 cell4.innerHTML = this.read.checked;
-                cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[i].id}">EDIT</button></td>`;
-                cell6.innerHTML = `<td><button class="deletebtn" id="delete.${myLibrary[i].id} data-index=${myLibrary[i].id}">DELETE</button></td>`;
+                cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[myLibrary.length-1].id}">EDIT</button></td>`;
+                cell5.addEventListener('click', function() {
+                    function checkIDs(e){
+                    return e.id !== Number(delbtns[i].getAttribute('data-index'))                
+                }
+                            
+                let newLib = myLibrary.filter(checkIDs)
+                myLibrary = newLib;
+                console.log(myLibrary)
+                recreateTable()});
+                cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[myLibrary.length-1].id}">DELETE</button></td>`;
         submitNew.reset();
         document.getElementById('submitNew').style.visibility='hidden'}
-    
-        
+
+function setIDs(){
+    for (let i = 0; i < myLibrary.length; i++) {
+    myLibrary[i].id = Number(i)
+            }
+        }
