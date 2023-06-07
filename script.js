@@ -36,7 +36,6 @@ for (let i = 0; i < delbtns.length; i++) {
                         
             let newLib = myLibrary.filter(checkIDs)
             myLibrary = newLib;
-            console.log(myLibrary)
             recreateTable();
             
         })
