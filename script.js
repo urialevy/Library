@@ -111,7 +111,6 @@ function recreateTable() {
             let read = document.getElementById('read').checked
             addBookToLibrary(title, author, pages, read, Number(myLibrary.length))
                 setIDs();
-                console.log(myLibrary)
                 let row = library.insertRow(-1)
                 let cell1 = row.insertCell(0);
                 let cell2 = row.insertCell(1);
@@ -132,7 +131,6 @@ function recreateTable() {
                             
                 let newLib = myLibrary.filter(checkIDs)
                 myLibrary = newLib;
-                console.log(myLibrary)
                 recreateTable()});
                 cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[myLibrary.length-1].id}">DELETE</button></td>`;
         submitNew.reset();
