@@ -96,12 +96,6 @@ function recreateTable() {
     function addNewBook() {
         document.getElementById('submitNew').style.visibility='visible'}
 
-    // function to delete an array item
-    function deleteBook(){
-
-    }
-
-
     // function to add rows to library HTML table
     
     function newEntry(){
@@ -124,15 +118,14 @@ function recreateTable() {
                 cell3.innerHTML = this.pages.value;
                 cell4.innerHTML = this.read.checked;
                 cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[myLibrary.length-1].id}">EDIT</button></td>`;
-                cell5.addEventListener('click', function() {
+                cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[myLibrary.length-1].id}">DELETE</button></td>`;
+                cell6.addEventListener('click', function() {
                     function checkIDs(e){
-                    return e.id !== Number(delbtns[i].getAttribute('data-index'))                
-                }
-                            
+                    return e.id !== Number(delbtns[delbtns.length-1].getAttribute('data-index'))                
+                }                            
                 let newLib = myLibrary.filter(checkIDs)
                 myLibrary = newLib;
                 recreateTable()});
-                cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[myLibrary.length-1].id}">DELETE</button></td>`;
         submitNew.reset();
         document.getElementById('submitNew').style.visibility='hidden'}
 
@@ -141,3 +134,6 @@ function setIDs(){
     myLibrary[i].id = Number(i)
             }
         }
+function appendRow() {
+    
+}
