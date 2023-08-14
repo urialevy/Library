@@ -1,11 +1,56 @@
-// delcaring variables from the webpage
-window.onload = function() {
-    const library = document.getElementById('libBody')
+// delcaring data structures
+class Library {
+    constructor(){
+        this.books = []
+    }
+    addBookToLibrary(newBook) {
+        this.books.push(newBook)
+    }
+}
+
+class Book {
+    constructor(title, author, pages, read, id) {
+        this.title = title
+        this.author = author
+        this.pages - pages
+        this.read = read
+        this.id = id
+    }
+}
+
+
+
+
+// global scope variables
+    const delbtns = document.getElementsByClassName(`deletebtn`)
+    const libraryBod = document.getElementById('libBody')
     const formArea = document.getElementById('newForm')
     const newBookBtn = document.getElementById('newbook');
+    const myLibrary = new Library()
+    const getBooksFromInput = () => {
+        const title = document.getElementById('title').value
+        const author = document.getElementById('author').value
+        const pages = Number(document.getElementById('pages').value)
+        const read = document.getElementById('read').checked
+        return new Book (title, author, pages, read)
+    }
+const firstBooks = () => {
+    myLibrary.addBookToLibrary(new Book("The Eye of the World", "Robert Jordan", 782,true, myLibrary.length))
+    myLibrary.addBookToLibrary(new Book("The Hobbit", "J.R.R. Tolkien", 304, true, myLibrary.length))
+    myLibrary.addBookToLibrary(new Book("The Great Gatsby", "F. Scott Fitzgerald",208,false, myLibrary.length))
+}
+firstBooks()
+// Adding some books 
+        // addBookToLibrary("The Eye of the World", "Robert Jordan", 782,true, myLibrary.length)
+        // addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 304, true, myLibrary.length)
+        // addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald",208,false, myLibrary.length)
+
+
+//adding event listeners
+
     newBookBtn.addEventListener('click', () => addNewBook())
         for (let i = 0; i<myLibrary.length; i++) {
-            let row = library.insertRow(-1)
+            let row = libraryBod.insertRow(-1)
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
@@ -25,8 +70,8 @@ window.onload = function() {
             submit.preventDefault()
         newEntry()})
         deletionBtns()
-}
-const delbtns = document.getElementsByClassName(`deletebtn`)
+
+
 function deletionBtns() {
 for (let i = 0; i < delbtns.length; i++) {
         delbtns[i].addEventListener('click', function(){
@@ -45,14 +90,14 @@ for (let i = 0; i < delbtns.length; i++) {
 
 function recreateTable() {
     setIDs();
-    library.innerHTML = `<tbody id = libBody>
+    myLibrary.innerHTML = `<tbody id = libBody>
     <tr>
         <th>Title</th>
         <th>Author</th>
         <th>Pages</th>
         <th>Read?</th></tbody>`;
     for (let i = 0; i<myLibrary.length; i++) {
-        let row = library.insertRow(-1)
+        let row = libraryBod.insertRow(-1)
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
         let cell3 = row.insertCell(2);
@@ -70,28 +115,9 @@ function recreateTable() {
     deletionBtns();
 }
 
-    // declaring library variable and the Book object
-    let myLibrary = []
-    
-    // function Book(title, author, pages, read, id) {
-    //     this.title = title
-    //     this.author = author;
-    //     this.pages = pages
-    //     this.read = read
-    //     this.id = id;
-    
-    // }
 
-    class Book {
-        constructor(title, author, pages, read, id) {
-            this.title = title
-            this.author = author
-            this.pages - pages
-            this.read = read
-            this.id = id
-        }
 
-    }
+
     
     // add book to library function
     function addBookToLibrary(title, author, pages, read, id){true
@@ -99,10 +125,7 @@ function recreateTable() {
         
     }
     
-    // Adding some books 
-    addBookToLibrary("The Eye of the World", "Robert Jordan", 782,true, myLibrary.length)
-    addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 304, true, myLibrary.length)
-    addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald",208,false, myLibrary.length)
+
     
     // create add new book form with its functionality
     function addNewBook() {
@@ -117,7 +140,7 @@ function recreateTable() {
             let read = document.getElementById('read').checked
             addBookToLibrary(title, author, pages, read, Number(myLibrary.length))
                 setIDs();
-                let row = library.insertRow(-1)
+                let row = libraryBod.insertRow(-1)
                 let cell1 = row.insertCell(0);
                 let cell2 = row.insertCell(1);
                 let cell3 = row.insertCell(2);
