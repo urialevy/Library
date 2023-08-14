@@ -49,7 +49,7 @@ td {
     /* visibility: hidden; */
        
 }
-#submitNew > div {
+.formdiv {
     display: flex;
     flex-direction: column;
     justify-items: ce;
@@ -71,7 +71,6 @@ form > select {
 
 #submit {
     display: grid;
-    grid-template-columns: 1;
-    justify-self: center;
     justify-items: center;
+    margin-left: 13rem;
 }
