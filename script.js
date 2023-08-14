@@ -73,14 +73,26 @@ function recreateTable() {
     // declaring library variable and the Book object
     let myLibrary = []
     
-    function Book(title, author, pages, read, id) {
-        this.title = title
-        this.author = author;
-        this.pages = pages
-        this.read = read
-        this.id = id;
+    // function Book(title, author, pages, read, id) {
+    //     this.title = title
+    //     this.author = author;
+    //     this.pages = pages
+    //     this.read = read
+    //     this.id = id;
     
+    // }
+
+    class Book {
+        constructor(title, author, pages, read, id) {
+            this.title = title
+            this.author = author
+            this.pages - pages
+            this.read = read
+            this.id = id
+        }
+
     }
+    
     // add book to library function
     function addBookToLibrary(title, author, pages, read, id){true
         myLibrary.push(new Book(title, author, pages, read, id));
