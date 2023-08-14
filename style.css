@@ -24,10 +24,6 @@ container {
     margin-bottom:20px;
 }
 
-#submitNew{
-    visibility: hidden;
-}
-
 table {
     margin-top: 2rem;
     border-collapse: collapse;
@@ -43,9 +39,20 @@ td {
 }
 
 #submitNew {
+    display: grid;
+
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    align-self: center;
+    justify-self: center;
+    gap: 1.5rem;
+    /* visibility: hidden; */
+       
+}
+#submitNew > div {
     display: flex;
     flex-direction: column;
-       
+    justify-items: ce;
 }
 
 label {
@@ -60,4 +67,11 @@ form > input {
 form > select {
     width: 3rem;
     align-self: center;
+}
+
+#submit {
+    display: grid;
+    grid-template-columns: 1;
+    justify-self: center;
+    justify-items: center;
 }
