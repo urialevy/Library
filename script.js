@@ -1,4 +1,13 @@
 // delcaring data structures
+class Book {
+    constructor(title, author, pages, read, id) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+        this.id = id
+    }
+}
 class Library {
     constructor(){
         this.books = []
@@ -6,15 +15,10 @@ class Library {
     addBookToLibrary(newBook) {
         this.books.push(newBook)
     }
-}
-
-class Book {
-    constructor(title, author, pages, read, id) {
-        this.title = title
-        this.author = author
-        this.pages - pages
-        this.read = read
-        this.id = id
+    firstBooks = () => {
+        myLibrary.addBookToLibrary(new Book("The Eye of the World", "Robert Jordan", 782, true, crypto.randomUUID()))
+        myLibrary.addBookToLibrary(new Book("The Hobbit", "J.R.R. Tolkien", 304, true, crypto.randomUUID()))
+        myLibrary.addBookToLibrary(new Book("The Great Gatsby", "F. Scott Fitzgerald",208,false, crypto.randomUUID()))
     }
 }
 
@@ -22,153 +26,125 @@ class Book {
 
 
 // global scope variables
-    const delbtns = document.getElementsByClassName(`deletebtn`)
-    const libraryBod = document.getElementById('libBody')
-    const formArea = document.getElementById('newForm')
-    const newBookBtn = document.getElementById('newbook');
-    const myLibrary = new Library()
-    const getBooksFromInput = () => {
+const form = document.getElementById('submitNew')
+const delbtns = document.getElementsByClassName(`deletebtn`)
+const libraryBod = document.getElementById('libBody')
+const formArea = document.getElementById('newForm')
+const newBookBtn = document.getElementById('newbook');
+const myLibrary = new Library()
+const getBooksFromInput = () => {
         const title = document.getElementById('title').value
         const author = document.getElementById('author').value
         const pages = Number(document.getElementById('pages').value)
         const read = document.getElementById('read').checked
-        return new Book (title, author, pages, read)
-    }
-const firstBooks = () => {
-    myLibrary.addBookToLibrary(new Book("The Eye of the World", "Robert Jordan", 782,true, myLibrary.length))
-    myLibrary.addBookToLibrary(new Book("The Hobbit", "J.R.R. Tolkien", 304, true, myLibrary.length))
-    myLibrary.addBookToLibrary(new Book("The Great Gatsby", "F. Scott Fitzgerald",208,false, myLibrary.length))
-}
-firstBooks()
-// Adding some books 
-        // addBookToLibrary("The Eye of the World", "Robert Jordan", 782,true, myLibrary.length)
-        // addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 304, true, myLibrary.length)
-        // addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald",208,false, myLibrary.length)
-
-
-//adding event listeners
-
-    newBookBtn.addEventListener('click', () => addNewBook())
-        for (let i = 0; i<myLibrary.length; i++) {
-            let row = libraryBod.insertRow(-1)
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            let cell3 = row.insertCell(2);
-            let cell4 = row.insertCell(3);
-            let cell5 = row.insertCell(4);
-            let cell6 = row.insertCell(5);
-            let cell7 = row.insertCell(6);
-            cell1.innerHTML = myLibrary[i].title;
-            cell2.innerHTML = myLibrary[i].author;
-            cell3.innerHTML = myLibrary[i].pages;
-            cell4.innerHTML = myLibrary[i].read
-            cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[i].id}">EDIT</button></td>`;
-            cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[i].id}>DELETE</button></td>`; 
-        }
-        const form = document.getElementById('submitNew')
-        form.addEventListener('submit', function(submit) {
-            submit.preventDefault()
-        newEntry()})
-        deletionBtns()
-
-
-function deletionBtns() {
-for (let i = 0; i < delbtns.length; i++) {
-        delbtns[i].addEventListener('click', function(){
-            function checkIDs(e){
-                return e.id !== Number(delbtns[i].getAttribute('data-index'))                
-            }
-                        
-            let newLib = myLibrary.filter(checkIDs)
-            myLibrary = newLib;
-            recreateTable();
-            
-        })
+        return new Book (title, author, pages, read, crypto.randomUUID())
     }
 
-}
 
-function recreateTable() {
-    setIDs();
-    myLibrary.innerHTML = `<tbody id = libBody>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Pages</th>
-        <th>Read?</th></tbody>`;
-    for (let i = 0; i<myLibrary.length; i++) {
+const recreateTable = (lib) => {
+    libraryBod.innerHTML = `<table id="library">
+                    <tbody id = libBody>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Read?</th>
+                <th>ID</th></tbody>
+              </table>`
+    lib.forEach(book => {
         let row = libraryBod.insertRow(-1)
-        let cell1 = row.insertCell(0);
-        let cell2 = row.insertCell(1);
-        let cell3 = row.insertCell(2);
-        let cell4 = row.insertCell(3);
-        let cell5 = row.insertCell(4);
-        let cell6 = row.insertCell(5);
-        let cell7 = row.insertCell(6);
-        cell1.innerHTML = myLibrary[i].title;
-        cell2.innerHTML = myLibrary[i].author;
-        cell3.innerHTML = myLibrary[i].pages;
-        cell4.innerHTML = myLibrary[i].read
-        cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[i].id}">EDIT</button></td>`;
-        cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[i].id}>DELETE</button></td>`; 
-    }
-    deletionBtns();
+            let nameCell = row.insertCell(0);
+            let authorCell = row.insertCell(1);
+            let pagesCell = row.insertCell(2);
+            let readCell = row.insertCell(3);
+            let idCell = row.insertCell(4);
+            let editCell = row.insertCell(5);
+            let deleteCell = row.insertCell(6);
+            let cell8 = row.insertCell(7)
+            nameCell.innerHTML = book.title;
+            authorCell.innerHTML = book.author
+            pagesCell.innerHTML = book.pages
+            readCell.innerHTML = book.read
+            idCell.innerHTML = book.id
+            editCell.innerHTML=`<td><button class="editbtn" id="edit.${book.id}">EDIT</button></td>`
+            editCell.addEventListener('click', function(e) {
+                
+            })
+            deleteCell.innerHTML = `<td><button class="deletebtn" id="delete.${book.id}">DELETE</button></td>`; 
+            deleteCell.addEventListener('click', function(e) {
+                
+                function checkIDs(target) {
+                    return target.id !== book.id
+                }
+                
+                let newLib = myLibrary.books.filter(checkIDs)
+                
+                myLibrary.books = newLib
+                libraryBod.innerHTML = ``
+                recreateTable(myLibrary.books)
+
+            })
+    })    
 }
+        form.addEventListener('submit', function(e) {
+            e.preventDefault()
+            recreateTable(myLibrary.books)
+        })
+    
 
+
+// function deletionBtns() {
+// for (let i = 0; i < delbtns.length; i++) {
+//         delbtns[i].addEventListener('click', function(){
+//             function checkIDs(e){
+//                 return e.id !== Number(delbtns[i].getAttribute('data-index'))                
+//             }
+                        
+//             let newLib = myLibrary.books.filter(checkIDs)
+//             myLibrary = newLib;
+//             recreateTable();
+            
+//         })
+//     }
+
+// }
+
+   
 
 
 
     
-    // add book to library function
-    function addBookToLibrary(title, author, pages, read, id){true
-        myLibrary.push(new Book(title, author, pages, read, id));
-        
-    }
-    
-
-    
-    // create add new book form with its functionality
-    function addNewBook() {
-        document.getElementById('submitNew').style.visibility='visible'}
-
-    // function to add rows to library HTML table
-    
-    function newEntry(){
-            let title = document.getElementById('title').value
-            let author = document.getElementById('author').value
-            let pages = Number(document.getElementById('pages').value)
-            let read = document.getElementById('read').checked
-            addBookToLibrary(title, author, pages, read, Number(myLibrary.length))
-                setIDs();
-                let row = libraryBod.insertRow(-1)
-                let cell1 = row.insertCell(0);
-                let cell2 = row.insertCell(1);
-                let cell3 = row.insertCell(2);
-                let cell4 = row.insertCell(3);
-                let cell5 = row.insertCell(4);
-                let cell6 = row.insertCell(5);
-                let cell7 = row.insertCell(6);
-                cell1.innerHTML = this.title.value;
-                cell2.innerHTML = this.author.value;
-                cell3.innerHTML = this.pages.value;
-                cell4.innerHTML = this.read.checked;
-                cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[myLibrary.length-1].id}">EDIT</button></td>`;
-                cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[myLibrary.length-1].id}">DELETE</button></td>`;
-                cell6.addEventListener('click', function() {
-                    function checkIDs(e){
-                    return e.id !== Number(delbtns[delbtns.length-1].getAttribute('data-index'))                
-                }                            
-                let newLib = myLibrary.filter(checkIDs)
-                myLibrary = newLib;
-                recreateTable()});
-        submitNew.reset();
-        document.getElementById('submitNew').style.visibility='hidden'}
-
-function setIDs(){
-    for (let i = 0; i < myLibrary.length; i++) {
-    myLibrary[i].id = Number(i)
-            }
-        }
-function appendRow() {
-    
-}
+    // function newEntry(){
+    //         let title = document.getElementById('title').value
+    //         let author = document.getElementById('author').value
+    //         let pages = Number(document.getElementById('pages').value)
+    //         let read = document.getElementById('read').checked
+    //         myLibrary.addBookToLibrary(new Book(title, author, pages, read, crypto.randomUUID()))
+    //             let row = libraryBod.insertRow(-1)
+    //             let cell1 = row.insertCell(0);
+    //             let cell2 = row.insertCell(1);
+    //             let cell3 = row.insertCell(2);
+    //             let cell4 = row.insertCell(3);
+    //             let cell5 = row.insertCell(4);
+    //             let cell6 = row.insertCell(5);
+    //             let cell7 = row.insertCell(6);
+    //             cell1.innerHTML = this.title.value;
+    //             cell2.innerHTML = this.author.value;
+    //             cell3.innerHTML = this.pages.value;
+    //             cell4.innerHTML = this.read.checked;
+    //             cell5.innerHTML = `<td><button class="editbtn" id="edit.${myLibrary[myLibrary.books.length-1]}">EDIT</button></td>`;
+    //             cell6.innerHTML = `<td><button class="deletebtn" data-index=${myLibrary[myLibrary.books.length-1]}">DELETE</button></td>`;
+    //             cell6.addEventListener('click', function() {
+    //                 function checkIDs(e){
+    //                 return e.id !== Number(delbtns[delbtns.length-1].getAttribute('data-index'))                
+    //             }                            
+    //             let newLib = myLibrary.filter(checkIDs)
+    //             myLibrary = newLib;
+    //             recreateTable()});
+    //     submitNew.reset();
+    //     document.getElementById('submitNew').style.visibility='hidden'}
+myLibrary.firstBooks()
+recreateTable(myLibrary.books)
+newBookBtn.addEventListener('click', () => addNewBook())
+function addNewBook() {
+    document.getElementById('submitNew').style.visibility='visible'}
