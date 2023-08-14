@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
-    <script src ="script.js"> </script>
+    
 </head>
 <body>
     <container>
@@ -14,16 +14,16 @@
         <div id ="main"><div id="maintop">
                 <button id="newbook">NEW BOOK</button></div>
                 <div id="newForm"><form id="submitNew">
-                    <label for="Title">Title</label>
-                    <input type="text" name="Title" id="title" placeholder="Title" required> <br>
-                    <label for="Author">Author</label>
-                    <input type="text" name="Author" id="author" placeholder="Author" required> <br>
-                    <label for="Pages">Pages</label>
-                    <input type="number" name="Pages" id="pages" required> <br>
-                    <label for="read">Read?</label>
-                    <input type="checkbox" id="read"> <br>
-                    <input type="submit" id="submitBtn">
-                </form></div>
+                    <div class="formdiv"><label for="Title">Title</label>
+                    <input type="text" name="Title" id="title" placeholder="Title" required> <br></div>
+                    <div class="formdiv"><label for="Author">Author</label>
+                    <input type="text" name="Author" id="author" placeholder="Author" required> <br></div>
+                    <div class="formdiv"><label for="Pages">Pages</label>
+                    <input type="number" name="Pages" id="pages" required> <br></div>
+                    <div class="formdiv"><label for="read">Read?</label>
+                    <input type="checkbox" id="read"> </div>
+                    <div id="submit"><input type="submit" id="submitBtn"></div></form>
+                </div>
                     <div id="lib">
                 <table id="library">
                     <tbody id = libBody>
@@ -31,10 +31,13 @@
                     <th>Title</th>
                     <th>Author</th>
                     <th>Pages</th>
-                    <th>Read?</th></tbody>
+                    <th>Read?</th>
+                <th>ID</th></tbody>
               </table></div></div>
         </div>
         <div id ="footer"></div>
     </container>
+    <footer><p>Created by Uria Levy for <a href="www.theodinproject.com">the Odin Project</a></p></footer>
+    <script src ="script.js"> </script>
 </body>
 </html>

@@ -1,8 +1,10 @@
+body {
+    font-family: Helvetica;
+}
+
 container {
     display: grid;
     grid-template-rows: 1fr 5fr 1fr;
-    height: 100vh;
-    width: 100vw;
 }
 
 #header {
@@ -24,13 +26,10 @@ container {
     margin-bottom:20px;
 }
 
-#submitNew{
-    visibility: hidden;
-}
-
 table {
     margin-top: 2rem;
     border-collapse: collapse;
+    border-radius: 10%;
     }
 
 tr {
@@ -40,12 +39,24 @@ tr {
 
 td {
     padding: 15px;
+    border-radius: 10%;
 }
 
 #submitNew {
+    display: grid;
+
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    align-self: center;
+    justify-self: center;
+    gap: 1.5rem;
+    visibility: hidden;
+       
+}
+.formdiv {
     display: flex;
     flex-direction: column;
-       
+    justify-items: ce;
 }
 
 label {
@@ -60,4 +71,15 @@ form > input {
 form > select {
     width: 3rem;
     align-self: center;
+}
+
+#submit {
+    display: grid;
+    justify-items: center;
+    margin-left: 13rem;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
