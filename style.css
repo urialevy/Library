@@ -1,8 +1,10 @@
+body {
+    font-family: Helvetica;
+}
+
 container {
     display: grid;
     grid-template-rows: 1fr 5fr 1fr;
-    height: 100vh;
-    width: 100vw;
 }
 
 #header {
@@ -27,6 +29,7 @@ container {
 table {
     margin-top: 2rem;
     border-collapse: collapse;
+    border-radius: 10%;
     }
 
 tr {
@@ -36,6 +39,7 @@ tr {
 
 td {
     padding: 15px;
+    border-radius: 10%;
 }
 
 #submitNew {
@@ -73,4 +77,9 @@ form > select {
     display: grid;
     justify-items: center;
     margin-left: 13rem;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

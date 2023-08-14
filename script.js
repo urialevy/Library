@@ -42,7 +42,6 @@ title.value = ``
 author.value = ``;
 pages.value = ``
 read.checked = false;})
-
 const recreateTable = (lib) => {
     libraryBod.innerHTML = `<table id="library">
                     <tbody id = libBody>
@@ -62,14 +61,34 @@ const recreateTable = (lib) => {
             let idCell = row.insertCell(4);
             let editCell = row.insertCell(5);
             let deleteCell = row.insertCell(6);
-            let cell8 = row.insertCell(7)
+            let saveCell = row.insertCell(7)
             nameCell.innerHTML = book.title;
             authorCell.innerHTML = book.author
             pagesCell.innerHTML = book.pages
-            readCell.innerHTML = book.read
+            readCell.innerHTML = book.read ? `Read` : `Not Read`
             idCell.innerHTML = book.id
             editCell.innerHTML=`<td><button class="editbtn" id="edit.${book.id}">EDIT</button></td>`
             editCell.addEventListener('click', function(e) {
+                nameCell.innerHTML = `<input type="text" name="Title" id="title.${book.id}" value="${book.title}" required">`
+                authorCell.innerHTML = ` <input type="text" name="Author" id="author.${book.id}" value="${book.author}" required>`
+                pagesCell.innerHTML = `<input type="number" name="Pages" id="pages.${book.id}" value="${book.pages}" required>`
+                readCell.innerHTML = `<input type="checkbox" id="read.${book.id}" value="${book.read.checked}">`
+                saveCell.innerHTML = `<button id="saveCell.${book.id}">SAVE</button>`
+                saveCell.addEventListener('click', function(){
+                    function matchID(target){
+                        
+                        return target.id == book.id}
+                    let updateTarget = myLibrary.books.findIndex(matchID)
+                    let newTitle = document.getElementById(`title.${book.id}`).value; 
+                    let newAuth = document.getElementById(`author.${book.id}`).value;
+                    let newPage = document.getElementById(`pages.${book.id}`).value;
+                    let newRead = document.getElementById(`read.${book.id}`).checked
+                    myLibrary.books[updateTarget].title = newTitle;
+                    myLibrary.books[updateTarget].author = newAuth;
+                    myLibrary.books[updateTarget].pages = newPage;
+                    myLibrary.books[updateTarget].read = newRead;
+                    recreateTable(myLibrary.books)
+                })
             })
             deleteCell.innerHTML = `<td><button class="deletebtn" id="delete.${book.id}">DELETE</button></td>`; 
             deleteCell.addEventListener('click', function(e) {
